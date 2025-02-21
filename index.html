@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fi">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <title>Äänestyssovellus</title>
+  </head>
+  <body onload="paivita()">
+    <header>
+      <nav class="navbar navbar-dark border-5 border-bottom border-success">
+        <div class="container">
+          <a href="#" class="navbar-brand">sovellus</a>
+          <div class="ms-auto">
+            <div id="notLogged">
+              <button type="button" class="btn btn-success" onclick="document.getElementById('id01').style.display='block'">Kirjaudu</button>
+              <button type="button" class="btn btn-success" onclick="document.getElementById('id02').style.display='block'">Luo tili</button>
+            </div>
+            <div style="display: none;" id="logged">
+              <a id="knimi" href="#" class="navbar-brand"></a>
+              <button type="button" class="btn btn-success" onclick="logout()">Kirjaudu ulos</button>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div id="id01" class="modal">
+      <form class="modal-content animate">
+        <div class="container">
+          <span onclick="document.getElementById('id01').style.display='none'"
+          class="close" title="Close Modal">&times;</span>
+          <label for="siuname"><b>Käyttäjänimi</b></label>
+          <input id="siuname" type="text" placeholder="Käyttäjänimi" name="siuname" required>
+          <label for="sipsw"><b>Salasana</b></label>
+          <input id="sipsw" type="password" placeholder="Salasana" name="sipsw" required>
+          <button id="kirjauduTilille" type="submit" class="mbutton">Kirjaudu</button>
+        </div>
+        <div class="container" style="background-color:#f1f1f1">
+          <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn mbutton">Peruuta</button>
+        </div>
+      </form>
+    </div>
+    <div id="id02" class="modal">
+      <form class="modal-content animate">
+        <div class="container">
+          <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+          <h1>Luo tili</h1>
+          <p>Täytä tiedot luodaksesi tilin.</p>
+          <hr>
+          <label for="suname"><b>Käyttäjänimi</b></label>
+          <input id="suname" type="text" placeholder="Aseta käyttäjänimi" name="suname" required>
+          <label for="supsw"><b>Salasana</b></label>
+          <input id="supsw" type="password" placeholder="Aseta salasana" name="supsw" required>
+          <label for="supsw-repeat"><b>Vahvista salasana</b></label>
+          <input id="supsw-repeat" type="password" placeholder="Vahvista salasana" name="supsw-repeat" required>
+          <label>
+            <input id="createAdmin" type="checkbox" name="admin" style="margin-bottom:15px"> Admin
+          </label>
+          <div class="clearfix">
+            <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn2 mbutton2 mbutton">Peruuta</button>
+            <button type="submit" class="mbutton2 mbutton" id="luoTili">Luo tili</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div id="id03" class="modal">
+      <form class="modal-content animate">
+        <div class="container">
+          <span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
+          <h1>Luo äänestys</h1>
+          <p>Täytä tiedot luodaksesi äänestys.</p>
+          <hr>
+          <label for="lisaaOtsikko"><b>Lisää otsikko</b></label>
+          <input id="lisaaOtsikko" type="text" placeholder="Lisää otsikko" name="lisaaOtsikko" required>
+          <label for="valinta1"><b>Valinta 1</b></label>
+          <input id="valinta1" type="text" placeholder="Valinta 1" name="valinta1" required>
+          <label for="valinta2"><b>Valinta 2</b></label>
+          <input id="valinta2" type="text" placeholder="Valinta 2" name="valinta2" required>
+          <div class="clearfix">
+            <button type="button" onclick="document.getElementById('id03').style.display='none'" class="cancelbtn2 mbutton2 mbutton">Peruuta</button>
+            <button id="lisaa" type="submit" class="mbutton2 mbutton">Luo äänestys</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div id="id04" class="modal">
+      <form class="modal-content animate">
+        <div class="container">
+          <span onclick="document.getElementById('id04').style.display='none'" class="close" title="Close Modal">&times;</span>
+          <h1>Poista äänestys</h1>
+          <p>Anna poistettavan äänestyksen nimi.</p>
+          <hr>
+          <label for="poisto"><b>Poistettava äänestys</b></label>
+          <input id="poisto" type="text" placeholder="Poistettava äänestys" name="poisto" required>
+          <div class="clearfix">
+            <button type="button" onclick="document.getElementById('id04').style.display='none'" class="cancelbtn2 mbutton2 mbutton">Peruuta</button>
+            <button id="poista" type="submit" class="mbutton2 mbutton">Poista äänestys</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="container mt-4">
+      <div id="voteArea" class="row row-cols-auto">
+        
+      </div>
+    </div>
+    
+    <script src="main.js"></script>
+  </body>
+</html>
