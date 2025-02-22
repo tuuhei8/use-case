@@ -1,23 +1,23 @@
 
-document.getElementById('luoTili').addEventListener('click', luo)
-document.getElementById('kirjauduTilille').addEventListener('click', kirjaudu)
-document.getElementById('lisaa').addEventListener('click', createVote)
-document.getElementById('poista').addEventListener('click', deleteVote)
-var kayttajat = []
-var kayttaja = ''
-var aanestykset = []
+document.getElementById('luoTili').addEventListener('click', luo);
+document.getElementById('kirjauduTilille').addEventListener('click', kirjaudu);
+document.getElementById('lisaa').addEventListener('click', createVote);
+document.getElementById('poista').addEventListener('click', deleteVote);
+var kayttajat = [];
+var kayttaja = '';
+var aanestykset = [];
 
 function paivita() {
     if (tarkistaAanestysTila()) {
-        lataaAanestykset()
-        printVotes()
+        lataaAanestykset();
+        printVotes();
     }
     if (tarkistaTila() === true) {
-        lataaLogin()
+        lataaLogin();
         if (kayttajat.length > 0) {
             for (i = 0; i < kayttajat.length; i++) {
                 if (kayttajat[i].lgin === true) {
-                    login(kayttajat[i].nimi, kayttajat[i].psw)
+                    login(kayttajat[i].nimi, kayttajat[i].psw);
                 }
             }
         }
@@ -25,68 +25,69 @@ function paivita() {
 }
 
 function asetaTila(tila) {
-    let loggedIn = tila
-    let loginState = JSON.stringify(loggedIn)
-    sessionStorage.setItem('logged', loginState)
+    let loggedIn = tila;
+    let loginState = JSON.stringify(loggedIn);
+    sessionStorage.setItem('logged', loginState);
 }
 
 function tarkistaTila() {
-    let tila = sessionStorage.getItem('logged')
-    let boolean = JSON.parse(tila)
+    let tila = sessionStorage.getItem('logged');
+    let boolean = JSON.parse(tila);
     return boolean;
 }
 
 function tallennaLogin() {
     const myJSON = JSON.stringify(kayttajat);
-    sessionStorage.setItem('data', myJSON)
+    sessionStorage.setItem('data', myJSON);
 }
 
 function lataaLogin() {
-    let data = sessionStorage.getItem('data')
+    let data = sessionStorage.getItem('data');
     let arr = JSON.parse(data);
     kayttajat = arr;
 }
 
 function asetaAanestysTila(aanestysTila) {
-    let aansetysTila = aanestysTila
-    let voteState = JSON.stringify(aansetysTila)
-    sessionStorage.setItem('votes', voteState)
+    let aansetysTila = aanestysTila;
+    let voteState = JSON.stringify(aansetysTila);
+    sessionStorage.setItem('votes', voteState);
 }
 
 function tarkistaAanestysTila() {
-    let aanestysTila = sessionStorage.getItem('votes')
-    let boolean = JSON.parse(aanestysTila)
+    let aanestysTila = sessionStorage.getItem('votes');
+    let boolean = JSON.parse(aanestysTila);
     return boolean;
 }
 
 function tallennaAanestykset() {
     const myJSON = JSON.stringify(aanestykset);
-    sessionStorage.setItem('voteData', myJSON)
+    sessionStorage.setItem('voteData', myJSON);
 }
 
 function lataaAanestykset() {
-    let data = sessionStorage.getItem('voteData')
+    let data = sessionStorage.getItem('voteData');
     let arr = JSON.parse(data);
     aanestykset = arr;
 }
 
 function luo() {
-    const nimi = document.getElementById('suname').value
-    const psw = document.getElementById('supsw').value
-    const vpsw = document.getElementById('supsw-repeat').value
-    const admin = document.getElementById('createAdmin').checked
+    const nimi = document.getElementById('suname').value;
+    const psw = document.getElementById('supsw').value;
+    const vpsw = document.getElementById('supsw-repeat').value;
+    const admin = document.getElementById('createAdmin').checked;
     if (kayttajat.length > 0) {
         for (i = 0; i < kayttajat.length; i++) {
             if (kayttajat[i].nimi === nimi) {
-                alert('Käyttäjänimi on varattu.')
+                alert('Käyttäjänimi on varattu.');
                 return;
             }
         }
     }
     if (nimi.length > 0 && psw.length > 0 && psw == vpsw) {
-        kayttajat.push(new User(nimi, psw, admin))
+        kayttajat.push(new User(nimi, psw, admin));
     } else {
-        alert('Virhe')
+        alert('Täytä tarvittavat tiedot');
+        return;
     }
     tallennaLogin()
     login(nimi, psw)
