@@ -12,10 +12,6 @@ nav {
     background-color: rgb(74, 73, 73);
 }
 
-ul {
-    list-style: none;
-}
-
 .modal {
     display: none;
     position: fixed;
