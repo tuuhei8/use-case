@@ -100,7 +100,6 @@ function kirjaudu() {
 }
 
 function login(nimi, psw) {
-    tallennaLogin()
     lataaLogin()
     if (kayttajat.length > 0) {
         for (i = 0; i < kayttajat.length; i++) {
@@ -128,7 +127,6 @@ function login(nimi, psw) {
                 } else {
                     document.getElementById('knimi').innerHTML = kayttaja
                 }
-                tallennaLogin()
                 document.getElementById('logged').style.display = ''
             } 
         }
@@ -138,7 +136,7 @@ function login(nimi, psw) {
     } else {
         alert('Ei rekisteröityneitä käyttäjiä.')
     }
-    
+    tallennaLogin()
 }
 
 function logout() {
