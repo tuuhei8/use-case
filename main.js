@@ -93,13 +93,15 @@ function luo() {
     login(nimi, psw)
 }
 
-function kirjaudu() {
+function kirjaudu(event) {
+    event.preventDefault()
     const nimi = document.getElementById('siuname').value
     const psw = document.getElementById('sipsw').value
     login(nimi, psw)
 }
 
 function login(nimi, psw) {
+    tallennaLogin()
     lataaLogin()
     if (kayttajat.length > 0) {
         for (i = 0; i < kayttajat.length; i++) {
@@ -130,6 +132,9 @@ function login(nimi, psw) {
                 tallennaLogin()
                 document.getElementById('logged').style.display = ''
             } 
+        }
+        if (tarkistaTila() === false) {
+            alert('Kirjautuminen epäonnistui, tarkista käyttäjänimi ja salasana.')
         }
     } else {
         alert('Ei rekisteröityneitä käyttäjiä.')
