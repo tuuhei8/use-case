@@ -235,7 +235,7 @@ function printVotes() {
         let div4 = document.createElement('div')
         let button1 = document.createElement('button')
         button1.setAttribute('onclick', `vote("${aanestykset[i].otsikko}", 1)`)
-        button1.setAttribute('class', 'btn btn-info mt-2')
+        button1.setAttribute('class', 'btn btn-primary mt-2')
         button1.setAttribute('type', 'submit')
         button1.innerHTML = 'Äänestä'
         let hr = document.createElement('hr')
@@ -249,7 +249,7 @@ function printVotes() {
         let div6 = document.createElement('div')
         let button2 = document.createElement('button')
         button2.setAttribute('onclick', `vote("${aanestykset[i].otsikko}", 2)`)
-        button2.setAttribute('class', 'btn btn-info mt-2')
+        button2.setAttribute('class', 'btn btn-primary mt-2')
         button2.setAttribute('type', 'submit')
         button2.innerHTML = 'Äänestä'
         //Elementtien kasaus
