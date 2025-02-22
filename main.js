@@ -93,8 +93,7 @@ function luo() {
     login(nimi, psw)
 }
 
-function kirjaudu(event) {
-    event.preventDefault()
+function kirjaudu() {
     const nimi = document.getElementById('siuname').value
     const psw = document.getElementById('sipsw').value
     login(nimi, psw)
