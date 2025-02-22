@@ -13,12 +13,10 @@ function paivita() {
         lataaAanestykset()
         printVotes()
     }
-    console.log(tarkistaTila(), 'a')
     if (tarkistaTila() === true) {
         lataaLogin()
         if (kayttajat.length > 0) {
             for (i = 0; i < kayttajat.length; i++) {
-                console.log('asaadaddsd')
                 if (kayttajat[i].lgin === true) {
                     login(kayttajat[i].nimi, kayttajat[i].psw)
                 }
@@ -48,7 +46,6 @@ function lataaLogin() {
     let data = sessionStorage.getItem('data')
     let arr = JSON.parse(data);
     kayttajat = arr;
-    console.log(arr)
 }
 
 function asetaAanestysTila(aanestysTila) {
@@ -72,7 +69,6 @@ function lataaAanestykset() {
     let data = sessionStorage.getItem('voteData')
     let arr = JSON.parse(data);
     aanestykset = arr;
-    console.log(arr)
 }
 
 function luo() {
@@ -90,13 +86,11 @@ function luo() {
     }
     if (nimi.length > 0 && psw.length > 0 && psw == vpsw) {
         kayttajat.push(new User(nimi, psw, admin))
-        console.log(kayttajat,'QQQQQ')
     } else {
         alert('Virhe')
     }
     tallennaLogin()
     login(nimi, psw)
-        console.log(admin)
 }
 
 function kirjaudu() {
@@ -112,7 +106,6 @@ function login(nimi, psw) {
             if (kayttajat[i].nimi === nimi && kayttajat[i].psw === psw) {
                 asetaTila(true)
                 kayttajat[i].lgin = true
-                console.log(kayttajat[i].lgin, 'asxacsfbggnhmmjkjnfgvv')
                 kayttaja = kayttajat[i].nimi
                 document.getElementById('notLogged').style.display = 'none'
                 if (kayttajat[i].admin === true) {
@@ -135,32 +128,12 @@ function login(nimi, psw) {
                     document.getElementById('knimi').innerHTML = kayttaja
                 }
                 tallennaLogin()
-                console.log('GGG')
                 document.getElementById('logged').style.display = ''
             } 
         }
     } else {
         alert('Ei rekisteröityneitä käyttäjiä.')
     }
-    
-}
-
-function e() {
-    
-        const kortti = (new Card("Musta vai valkoinen?", "Musta", "Valkoinen"))
-        aanestykset.push(kortti)
-        tallennaAanestykset()
-        printVotes()
-        console.log(aanestykset, 'vain kerran')
-    
-}
-function c() {
-    
-        const kortti = (new Card(" asaddasas", "Musta", "Valkoinen"))
-        aanestykset.push(kortti)
-        tallennaAanestykset()
-        printVotes()
-        console.log(aanestykset, 'vain kerran')
     
 }
 
@@ -176,7 +149,6 @@ function logout() {
             }
         }
         tallennaLogin()
-        console.log('logout funktio')
     }
 }
 
@@ -198,16 +170,19 @@ function createVote() {
 }
 
 function deleteVote() {
-    console.log('LLLLLLLLLLLLLLL')
+    let virhe = true
     let otsikko = document.getElementById('poisto').value
     for (i = 0; i < aanestykset.length; i++) {
         if (otsikko == aanestykset[i].otsikko) {
-            console.log('RRRRRRRRRRRRRRR')
+            virhe = false
             aanestykset.splice(i, 1)
             sessionStorage.removeItem('voteData')
             tallennaAanestykset()
             printVotes()
         }
+    }
+    if (virhe) {
+        alert('Äänestystä jonka yrität poistaa ei löydy, Tarkista oikeinkirjoitus.')
     }
 }
 
@@ -219,11 +194,9 @@ function printVotes() {
     }
     for (i = 0; i < aanestykset.length; i++) {
         if (tarkistus === true) {
-            console.log(document.getElementsByClassName('col')[i].children[0].children[0].children[0].innerHTML, 'PRTGHH')
             let a = document.getElementsByClassName('col')[i].children[0].children[0].children[0].innerHTML
             if (a == aanestykset[i].otsikko) {
                 document.location.reload();
-                console.log('tupla')
             }
         }
         //kolumni
@@ -305,5 +278,7 @@ function vote(otsikko, nappi) {
                 printVotes()
             }
         }
+    } else {
+        alert('Äänestääksesi sinun on kirjauduttava sisään.')
     }
 }
