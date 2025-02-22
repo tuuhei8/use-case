@@ -7,7 +7,6 @@ var kayttajat = []
 var kayttaja = ''
 var aanestykset = []
 
-
 function paivita() {
     if (tarkistaAanestysTila()) {
         lataaAanestykset()
@@ -252,6 +251,7 @@ function printVotes() {
         button2.setAttribute('class', 'btn btn-info mt-2')
         button2.setAttribute('type', 'submit')
         button2.innerHTML = 'Äänestä'
+        //Elementtien kasaus
         div6.appendChild(button2)
         div5.appendChild(span3)
         div5.appendChild(span4)
@@ -266,7 +266,6 @@ function printVotes() {
         div1.appendChild(hr)
         div1.appendChild(div5)
         div0.appendChild(div1)
-        
         document.getElementById('voteArea').appendChild(div0)
         asetaAanestysTila(true)
     }
