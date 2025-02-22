@@ -27,6 +27,9 @@ Käyttötapauksen kulku:
     3. Ylläpitäjä vahvistaa valinnat
     4. Sovellus lisää uuden äänestyksen
 
+Poikkeuksellinen toiminta:
+    3a. Jos sama äänestys on jo olemassa seuraa virhe.
+
 
 Käyttötapauksen nimi: Äänestyksen poisto
 Käyttäjä: Ylläpitäjä

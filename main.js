@@ -163,6 +163,18 @@ function createVote() {
     let otsikko = document.getElementById('lisaaOtsikko').value
     let valinta1 = document.getElementById('valinta1').value
     let valinta2 = document.getElementById('valinta2').value
+    if (otsikko.length < 1 || valinta1.length < 1 || valinta2.length < 1) {
+        alert('Täytä kaikki kentät!');
+        return;
+    }
+    if (document.getElementById('voteArea').hasChildNodes()) {
+        for (i = 0; i < aanestykset.length; i++) {
+            if (aanestykset[i].otsikko == otsikko) {
+                alert('Äänsetys on jo olemassa!')
+                return;
+            }
+        }
+    }
     const kortti = (new Card(otsikko, valinta1, valinta2))
     aanestykset.push(kortti)
     tallennaAanestykset()
@@ -192,13 +204,13 @@ function printVotes() {
     if (document.getElementsByClassName('col').length > 0) {
         tarkistus = true
     }
-    for (i = 0; i < aanestykset.length; i++) {
-        if (tarkistus === true) {
-            let a = document.getElementsByClassName('col')[i].children[0].children[0].children[0].innerHTML
-            if (a == aanestykset[i].otsikko) {
-                document.location.reload();
-            }
+    if (tarkistus === true) {
+        let voteArea = document.getElementById('voteArea')
+        while (voteArea.hasChildNodes()) {
+            voteArea.removeChild(voteArea.firstChild)
         }
+    }
+    for (i = 0; i < aanestykset.length; i++) {
         //kolumni
         let div0 = document.createElement('div')
         div0.setAttribute('class', 'col')
@@ -252,6 +264,7 @@ function printVotes() {
         div1.appendChild(hr)
         div1.appendChild(div5)
         div0.appendChild(div1)
+        
         document.getElementById('voteArea').appendChild(div0)
         asetaAanestysTila(true)
     }
@@ -275,6 +288,10 @@ function vote(otsikko, nappi) {
                     aanestykset[i].aanimaara2 = aanestykset[i].aanimaara2 + 1;
                 }
                 tallennaAanestykset()
+                let voteArea = document.getElementById('voteArea')
+                while (voteArea.hasChildNodes()) {
+                    voteArea.removeChild(voteArea.firstChild)
+                }
                 printVotes()
             }
         }
