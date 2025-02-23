@@ -29,6 +29,7 @@ Käyttötapauksen kulku:
 
 Poikkeuksellinen toiminta:
     3a. Jos sama äänestys on jo olemassa seuraa virhe.
+    3b. Jos tarvittavia tietoja puuttuu annetaan virhe.
 
 
 Käyttötapauksen nimi: Äänestyksen poisto
