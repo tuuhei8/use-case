@@ -28,8 +28,8 @@ Käyttötapauksen kulku:
     4. Sovellus lisää uuden äänestyksen
 
 Poikkeuksellinen toiminta:
-    3a. Jos sama äänestys on jo olemassa seuraa virhe
-    3b. Jos tarvittavia tietoja puuttuu seuraa virhe
+    3a. Jos sama äänestys on jo olemassa seuraa virheilmoitus
+    3b. Jos tarvittavia tietoja puuttuu seuraa virheilmoitus
 
 
 Käyttötapauksen nimi: Äänestyksen poisto
